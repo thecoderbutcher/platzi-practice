@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            color: blue;
+        }
+        p:hover{
+            color: blueviolet;
+        }
+        p:nth-child(2):hover{
+            color: aquamarine;
+        }
+        p::after{
+            content: " ADD";
+        }
+        .container-flex{
+            display: flex;
+            background-color: papayawhip;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            flex-direction: column;
+        }
+        .item{
+            width: 30px;
+            height: 30px;
+            background-color: aqua;
+        }
+        .container-flex .item:nth-child(2n+1){
+            background-color: blue;
+        }
+        .container-grid{
+            display: grid;
+            width: 400px;
+            height: 400px;
+            background-color: papayawhip;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+        }
+        .item-grid{
+            background-color: palevioletred;
+        }
+        .container-grid .item-grid:nth-child(1){
+            grid-column: 1/2;
+        }
+        .container-grid .item-grid:nth-child(2){
+            grid-column: 2/3;
+            grid-row: 2/3;
+        }
+        .container-grid .item-grid:nth-child(3){
+            grid-column: 3/4;
+            grid-row: 3/4;
+        }
+        .container-grid .item-grid:nth-child(4){
+            grid-column: 4/5;
+            grid-row: 4/5;
+        }
+        .caja{
+            width: 200px;
+            height: 200px;
+            background-color: chocolate;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid violet;
+
+        }
+        .position{
+            background-color: yellow;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+        ul p{
+            position: sticky;
+            top: 0;
+            background-color: aqua;
+            padding: 5px; 
+        }
+        section{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .card{
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background-color: papayawhip;
+            overflow: hidden;
+        }
+        .card img{
+            width: 100%;
+        }
+        .card p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <p>HOLA MUNDO</p>
+    <p>ESTE ES UN SEGUNDO P</p>
+    <hr>
+    <div class="container-flex">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <hr>
+    <div class="container-grid">
+        <div class="item-grid"></div>
+        <div class="item-grid"></div>
+        <div class="item-grid"></div>
+        <div class="item-grid"></div> 
+    </div>
+    <hr>
+    <div class="caja">
+        <h1>TEXTO de prueba muy sutilmente </h1>
+    </div>
+    <hr>
+    <div class="position">
+
+    </div>
+    <ul>
+        <li>
+            <p>Title 1</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 2</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 3</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 4</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 5</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <p>Title 1</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 2</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 3</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 4</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 5</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <p>Title 1</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 2</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 3</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 4</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 5</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <p>Title 1</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 2</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 3</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 4</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 5</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <p>Title 1</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 2</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 3</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 4</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+        <li>
+            <p>Title 5</p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti fugiat fuga ab et nostrum quam, totam consequatur iusto ad tenetur ullam quae rem consectetur, modi illo maiores reiciendis nemo nisi.</span>
+        </li>
+    </ul>
+
+    <section>
+        <div class="card">
+            <img src="https://images.pexels.com/photos/15113597/pexels-photo-15113597.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="">
+            <p>mini pic</p>
+        </div>
+    </section>
+    <p>
+        TEXTO
+    </p>
+</body>
+</html>
