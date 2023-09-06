@@ -1,0 +1,27 @@
+@media (max-width:640px) {
+    .logo{
+        display: block;
+    }
+    .secondary-button,.edit-button{
+        margin-top: 100%;
+    }
+    .card-container{
+        grid-template-columns: repeat(auto-fill,140px);
+    }
+    .product-card{
+        width: 140px;
+    }
+    .product-card img{
+        height: 140px;
+        width: 140px;
+    }
+    .menu{
+        display: block;
+    }   
+    .navbar-left ul{
+        display: none;
+    }
+    .navbar-email{
+        display: none;
+    }
+}
