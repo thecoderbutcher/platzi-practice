@@ -7,15 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/005_Curso Práctico de JavaScript/css/app.css">
-    <link rel="stylesheet" href="/005_Curso Práctico de JavaScript/css/mobile.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/mobile.css">
     <title>Yarm store</title>
 </head>
 <body>
     <nav class="navbar">
-        <img src="/005_Curso Práctico de JavaScript/assets/icons/icon_menu.svg" alt="menu" class="menu">
+        <img src="./assets/icons/icon_menu.svg" alt="menu" class="menu">
         <div class="navbar-left">
-            <img src="/005_Curso Práctico de JavaScript/assets/logos/logo_yard_sale.svg" alt="logo" class="logo-menu">
+            <img src="./assets/logos/logo_yard_sale.svg" alt="logo" class="logo-menu">
             <ul>
                 <li><a href="/">All</a></li>
                 <li><a href="/">Clothes</a></li>
@@ -29,7 +29,7 @@
             <ul>
                 <li class="navbar-email">email@mail.com</li>
                 <li class="navbar-shoppingcart">
-                    <img src="/005_Curso Práctico de JavaScript/assets/icons/icon_shopping_cart.svg" alt="shopping cart">
+                    <img src="./assets/icons/icon_shopping_cart.svg" alt="shopping cart">
                     <div>2</div>
                 </li>
             </ul>
@@ -74,9 +74,10 @@
             </ul>
         </div>
     </nav>
-    <aside class="product-detail inactive">
+
+    <aside id="shoppingCartContainer" class="inactive">
         <div class="title-container">
-            <img src="/005_Curso Práctico de JavaScript/assets/icons/flechita.svg" alt="arrow">
+            <img src="./assets/icons/flechita.svg" alt="arrow">
             <p class="title">My order</p>
         </div> 
         <div class="my-order-content"> 
@@ -86,13 +87,34 @@
                 </figure>
                 <p>Bike</p>
                 <p>$30,00</p>
-                <img src="/005_Curso Práctico de JavaScript/assets/icons/icon_close.png" alt="close">
+                <img src="./assets/icons/icon_close.png" alt="close">
             </div> 
             <button class="primary-button">
                 Checkout
             </button>
         </div> 
     </aside>
-    <script src="/005_Curso Práctico de JavaScript/js/app.js"></script>
+
+    <section class="main-container">
+        <div class="cards-container"></div>
+    </section>
+
+    <aside id="productDetail" class="inactive">
+        <div class="product-detail-close">
+            <img src="./assets//icons/icon_close.png" alt="close">
+        </div>
+        <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
+        <div class="product-info">
+            <p>$35,00</p>
+            <p>Bike</p>
+            <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
+            <button class="primary-button add-to-cart-button">
+                <img src="./assets//icons/bt_add_to_cart.svg" alt="add to cart">
+                Add to cart
+            </button>
+        </div>
+    </aside>
+
+    <script src="./js/app.js"></script>
 </body>
 </html>
