@@ -5,18 +5,30 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 
-const defaultTodos = [
-  {text: "Tarea 1", completed:true},
-  {text: "Tarea 2", completed:true},
-  {text: "Tarea 3", completed:false},
-  {text: "Tarea 4", completed:false},
-  {text: "Tarea 5", completed:false},
-  {text: "Tarea 6", completed:true},
-]
+function useLocalStorage(itemName, initialValue){
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
+  
+  if(!localStorageItem){
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
+  } else {
+    parsedItem = JSON.parse(localStorageItem);
+  }
+
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItems = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem);
+  };
+
+  return [item, saveItems];
+}
 
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos)
-  const [searchValue, setSearchValue] = React.useState('')  
+  const [todos, saveTodos] = useLocalStorage('TODO_DB', []);
+  const [searchValue, setSearchValue] = React.useState(''); 
   const completedTodo = todos.filter(todo => !!todo.completed).length;
   const totaTodo = todos.length;
   const searchedTodos = todos.filter((todo) =>  (todo.text.toLowerCase().includes(searchValue.toLocaleLowerCase())))
@@ -25,14 +37,14 @@ function App() {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
 
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos.splice(todoIndex,1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   return (
