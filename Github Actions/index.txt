@@ -1,0 +1,228 @@
+Github Actions es una plataforma de integración y despliegue continuo CI/CD (Continuous Integration / Continuous Deployment) que permite automatizar procesos de compilación, pruebas y despliegue.
+
+El flujo CI/CD consta en 8 secciones que se repetirán cíclicamente, 4 para CI y 4 para CD.
+
+CI:
+
+Plan: Toda la etapa previa donde planificamos los features que integraremos al proyecto.
+Code: El código que hemos desarrollado.
+Build: Compilar o Interpretar el código para dejarlo listo para ser usado por algún host o fuente.
+Test: Correr todas las pruebas desarrolladas para asegurar que el código funcione correctamente.
+CD:
+
+Release: Enviar nuestra build a la locación remota donde se aloja el proyecto.
+Deploy: Reconfigurar y relanzar los servicios del proyecto con los nuevos features.
+Operate: Mantener el proyecto a flote.
+Measure: Medir con métricas la calidad del servicio.
+
+La ventaja competitiva de Github Actions es que permite integrar el resto de servicios de Github de manera nativa, por lo que podremos gestionar nuestros repos enteros sin la necesidad de usar alguna plataforma externa como intermediaria.
+También ofrece plantillas personalizadas desarrolladas por el propio equipo de Github o la comunidad que se acoplarán a nuestras necesidades.
+El scope de la configuración del flujo se dará por repositorio, por lo que cada repo tendrá su máximo nivel de personalización y respetará la atomicidad.
+Github mantiene la plataforma (Actions) y es de uso gratuito, por lo que podremos hacer uso de ella siempre y cuando manejemos proyectos no privativos.
+
+COMPONENTES 
+-Workflow -> Jobs -> Step -> Action 
+-Evento(es una accion que lanza nuestro ci o cd) -> Runner(pasos que se ejecutan en el servidor en nuestro ci cd)
+
+Workflow: proceso automatizado configurable que ejecutara un o mas Jobs. Se define mediante un archivo YAML en el directorio .github/workflow del repositorio que puede tener varios workflows.
+- name: hola-mundo
+- on: [push]
+el nombre del workflow sera hola-mundo y el disparador sera push
+
+Jobs: conjunto de tareas o steps en un workflow que se ejecutan en el mismo Runner. Los steps se ejecutaran en orfen y seran dependientes uno del otro. Como  se ejecutan en el mismo runner, puedes compartir datos de un step a otro
+
+Evento: Actividad especifica en un repositorio, la cual activa una ejecucion de un workflow. Puede originarse desde github o de una forma externa mediante una APIREST
+
+Runner: Servidor donde se ejecutan los workflow, puedes ejecutar un Jobs a la vez, github provee runners de ubuntu, win y mac. Puedes usar y configurar tus propios servidores como runners
+-name: hola-mundo
+-on: [push]
+-jobs:
+    -hola-mundo:
+        -runs-on: ubuntu-latest
+
+Step: puede ser un script en la terminal o un Action
+
+Action: aplicacion personalizada que realiza una tarea compleja repetitiva. Ayuda a reducir codigo repetido. Se pueden usar Actions propias o utilizar Action publicadas en github marketplace
+-name: hola-mundo
+-on: [push]
+-jobs:
+    -hola-mundo:
+        -runs-on: ubuntu-latest
+        -steps:
+            -name: Public IP
+            -id: ip
+            -uses: haythem/public-ip@v1.3
+            -name Hola mundo
+            -run echo ¡Hola mundo desde ${{steps.ip.outputs.ipv4}}!
+
+- *name: Aprendiendo GitHub Actions* → Es el nombre del Workflow que aparecerá en la sección de Actions en Github (opcional pero recomendadisimo).
+- *run-name: ¡Estoy aprendiendo GitHub Actions!* → Es el nombre específico del Workflow que aparecerá en la pestaña de Actions en Github (Opcional).
+- *on: [push]* → Esta se divide en 2. El “on” será la etiqueta que determine los triggers por los que se activará el Workflow; el [push] será el trigger por el que ha sido activado. Como es una lista, puedes agregar más triggers.
+- *jobs* → Agrupará todos los jobs que ocurrirán en el Workflow (no contiene valor).
+- *hola-mundo* → Esta es el identificador del job, así se diferenciará del resto (no puede contener espacios).
+- *runs-on: ubuntu-latest* → Especificará el tipo de Runner para este job.
+- *steps* → Agrupará todos los steps del job. Existen 2 tipos de steps, los que correrán actions del Marketplace o comandos de shell.
+- *name: Checkout* → Nombre del step, su identificador. (también es opcional pero es recomendado usarla).
+- *uses: actions/checkout@v3* → En este caso se usa la etiqueta uses para importar un action.
+- *run: python hola_mundo.py* → En este otro caso se usa la etiqueta run para correr un comando o script.
+
+---------------------------
+
+TRIGGERS
+Push
+Push se entiende cuando mandamos al repositorio remoto las actualizaciones del repositorio local.
+
+Este script acaparará el trigger push mientras suceda en los branches main o releases/** (cualquier rama con nombre release o que nazca a partir de este nombre) y solo se tendrá en cuenta si se han modificado archivos de formato .js.
+
+
+on: #Acaparará los triggers de este workflow
+	push: #El tipo de trigger: push
+		branches: #Las ramas en las que se activará el workflow
+			- 'main' #Se activará si se hace push en la rama main
+			- 'releases/**' #O en la rama releases y derivados
+		paths: #Serán las rutas que se tendrán en cuenta para activar el workflow
+			- '**.js' #Todos los archivos .js en el repositorio
+Pull Request
+El Pull Request será la petición de mergear una rama aislada con otra rama (generalmente principal).
+
+Este script se activará por un PR, específicamente en el momento de abrirlo y etiquetarlo (opened y labeled), seguirá el resto de reglas que el push.
+
+
+on: #Acaparará los triggers de este workflow
+	pull_request: #El tipo de trigger: pr
+		types: #Los estados que activarán el trigger
+			- [opened, labeled] #Tomará los estados del PR
+		branches: #Las ramas en las que se activará el workflow
+			- 'releases/**' #En la rama releases y derivados
+		paths: #Serán las rutas que se tendrán en cuenta para activar el workflow
+			- '**.js' #Todos los archivos .js en el repositorio
+Issues
+Los issues son foros donde se anuncian difuncionalidades del código por parte de la comunidad o los propios developers.
+
+Tiene la misma lógica de los PR, sin embargo, los types cambiarán.
+
+
+on: #Acaparará los triggers de este workflow
+	issues: #El tipo de trigger: issues
+		types: #Los estados que activarán el trigger
+			- [opened, edited, closed]
+Issue Comment
+Cuando se generen comentarios en un Issue o un PR se activará este trigger.
+
+Tendremos 2 casos, el primero donde se ejecutará un issue comment, y el segundo donde se ejecutará en un PR comment.
+
+En este caso cada que se cree o elimine un comentario de un Issue se activará y correrá el workflow.
+
+
+on:
+	issue_comment: 
+		types:  [created, deleted]
+En este segundo ejemplo también trabajaremos por issue_comment, sin embargo, añadiremos un job que verificará que estamos sobre un pull request con el condicional dado, si es verdad, podrá continuar.
+
+
+on: issue_comment
+jobs:
+	pr_commented:
+		name : PR comment
+		if : ${{ github.event.issue.pull_request }}
+Workflow dispatch
+Los Workflow dispatch son Workflows de activación manual, estos poseen la característica de poder setear inputs, los configuraremos dentro del archivo YAML.
+
+Este Workflow contendrá 3 variables a ingresar las cuales serán alerta, tags y enviroment, serán contenidas por la etiqueta inputs y en cada una especificaremos sus características. La primera tendrá una descripción, será obligatoria, tendrá medio como valor por defecto y será de tipo choice (las opciones serán alto, medio o bajo). Los otros 2 casos son parecidos, donde tags será un boolean opcional y enviroments un string obligatorio.
+
+
+on: 
+	workflow_dispatch:
+		inputs:
+			alerta:
+				description : 'Nivel'
+				required : true
+				default : medio
+				type : choice
+				option :
+				- bajo
+				- medio
+				- alto
+
+			tags:
+				description : 'Opcional'
+				required : false
+				****type : boolean
+
+			enviroment:
+				description : 'Objetivo'
+				required : true
+				type : string
+Schedule
+Los schedules son un tipo de trigger que se activará automáticamente por una regla de tiempo.
+
+
+on:
+	schedule:
+		- cron : '30 5,17 * * *'
+Puedes notar que hay 2 valores puestos (30 - 5,17) y 3 asteriscos, esta es una notación de cronograma que indicará valores a nivel de tiempo.
+
+
+[Minuto, Hora, Dia del mes, Mes, Día de la semana]
+
+Minuto (0 - 59)
+Hora (0 - 23) 
+Día del mes (1 - 31) 
+Mes (1 - 12 o JAN - DEC)
+Día de la semana ( 0 - 6 o SUN - SAT)
+Si el valor tiene un asterisco significa que será cíclico, si tiene coma significa que agrupará 2 valores
+
+Por lo que nuestro '30 5,17 * * *' significa a las 5:30AM y 5:30PM todos los días todos los meses del año.
+
+
+name: Reto 3 - Aprende a usar Expresiones
+on:
+  push:
+    branches:
+      - aprendiendo-github-actions
+
+  workflow_dispatch:
+    inputs:
+      nombre:
+        description: 'Nombre'
+        required: true
+        default: Ingresa tu nombre
+        type: string
+      edad:
+        description: 'Edad'
+        required: true
+        type: number
+      fruta:
+        description: 'Lista de Frutas'
+        default: Manzana
+        required: true
+        type: choice
+        options:
+        - Frutilla
+        - Pera
+        - Manzana
+jobs:
+    fruta-favorita:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Fruta Seleccionada
+        run: |
+          if ${{ inputs.fruta == 'Frutilla' }}; then
+            echo ${{ inputs.nombre }} Tu fruta favorita es la Frutilla 
+          elif ${{ inputs.fruta == 'Pera' }}; then
+            echo ${{ inputs.nombre }} Tu fruta favorita es la Pera
+          else 
+            echo ${{ inputs.nombre }} Tu fruta favorita es la Manzana
+          fi
+    mayor:
+      if: ${{ inputs.edad >= 18 }} 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Correr script
+          run: echo ${{ inputs.nombre }} es mayor de edad
+    menor:
+      if: ${{ inputs.edad < 18 }} 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Correr script
+          run: echo ${{ inputs.nombre }} es menor de edad
