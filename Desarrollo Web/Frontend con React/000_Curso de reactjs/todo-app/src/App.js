@@ -4,39 +4,29 @@ import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
-
-function useLocalStorage(itemName, initialValue){
-  const localStorageItem = localStorage.getItem(itemName);
-  let parsedItem;
-  
-  if(!localStorageItem){
-    localStorage.setItem(itemName, JSON.stringify(initialValue));
-    parsedItem = initialValue;
-  } else {
-    parsedItem = JSON.parse(localStorageItem);
-  }
-
-  const [item, setItem] = React.useState(parsedItem);
-
-  const saveItems = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-    setItem(newItem);
-  };
-
-  return [item, saveItems];
-}
+import {useLocalStorage} from './hooks/useLocalStorage'
 
 function App() {
+/* const defaultTodos = [
+   { text: 'Cortar cebolla', completed: true },
+   { text: 'Tomar el Curso de Intro a React.js', completed: false },
+   { text: 'Llorar con la Llorona', completed: false },
+   { text: 'LALALALALA', completed: false },
+   { text: 'Usar estados derivados', completed: true },
+ ];
+
+ localStorage.setItem('TODO_DB', JSON.stringify(defaultTodos));  */
+
   const [todos, saveTodos] = useLocalStorage('TODO_DB', []);
   const [searchValue, setSearchValue] = React.useState(''); 
   const completedTodo = todos.filter(todo => !!todo.completed).length;
-  const totaTodo = todos.length;
+  const totalTodo = todos.length;
   const searchedTodos = todos.filter((todo) =>  (todo.text.toLowerCase().includes(searchValue.toLocaleLowerCase())))
   
   const completeTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
-    newTodos[todoIndex].completed = true;
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
     saveTodos(newTodos)
   }
 
@@ -49,7 +39,7 @@ function App() {
 
   return (
     <>
-      <TodoCounter completed={completedTodo} total={totaTodo}/>
+      <TodoCounter completed={completedTodo} total={totalTodo}/>
       <TodoSearch 
         searchValue={searchValue}
         setSearchValue={setSearchValue}
