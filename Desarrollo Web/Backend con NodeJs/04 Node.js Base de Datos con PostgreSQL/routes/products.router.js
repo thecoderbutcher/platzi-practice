@@ -1,13 +1,13 @@
-const express = require('express');
+import express from 'express';
 
-const ProductsService = require('./../services/product.service');
-const validatorHandler = require('./../middlewares/validator.handler');
-const { createProductSchema, updateProductSchema, getProductSchema } = require('./../schemas/product.schema');
+import ProductsService from './../services/product.service.js';
+import {validatorHandler} from './../middlewares/validator.handler.js';
+import { createProductSchema, updateProductSchema, getProductSchema } from './../schemas/product.schema.js';
 
-const router = express.Router();
+const productsRouter = express.Router();
 const service = new ProductsService();
 
-router.get('/', async (req, res, next) => {
+productsRouter.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
     res.json(products);
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id',
+productsRouter.get('/:id',
   validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -29,7 +29,7 @@ router.get('/:id',
   }
 );
 
-router.post('/',
+productsRouter.post('/',
   validatorHandler(createProductSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -42,7 +42,7 @@ router.post('/',
   }
 );
 
-router.patch('/:id',
+productsRouter.patch('/:id',
   validatorHandler(getProductSchema, 'params'),
   validatorHandler(updateProductSchema, 'body'),
   async (req, res, next) => {
@@ -57,7 +57,7 @@ router.patch('/:id',
   }
 );
 
-router.delete('/:id',
+productsRouter.delete('/:id',
   validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -70,4 +70,4 @@ router.delete('/:id',
   }
 );
 
-module.exports = router;
+export default productsRouter;

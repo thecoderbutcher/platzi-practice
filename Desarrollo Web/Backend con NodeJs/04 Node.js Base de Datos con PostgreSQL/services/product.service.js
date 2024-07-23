@@ -1,21 +1,25 @@
-const { faker } = require('@faker-js/faker');
-const boom = require('@hapi/boom');
+import {faker} from '@faker-js/faker';
+import boom from '@hapi/boom';
+import { pool } from '../lib/postgres.pool.js';
+import { sequelize } from '../lib/sequelize.js';
 
 class ProductsService {
 
   constructor(){
     this.products = [];
     this.generate();
+    /* this.pool = pool;
+    this.pool.on('error', (err) => {console.log(err)}) */
   }
 
   generate() {
     const limit = 100;
     for (let index = 0; index < limit; index++) {
       this.products.push({
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         name: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(), 10),
-        image: faker.image.imageUrl(),
+        image: faker.image.url(),
         isBlock: faker.datatype.boolean(),
       });
     }
@@ -30,8 +34,12 @@ class ProductsService {
     return newProduct;
   }
 
-  find() {
-    return this.products;
+  async find() {
+    /* const result = await pool.query('SELECT * FROM tasks')
+    return result.rows; */
+    //Sequelize
+    const [data] = await sequelize.query('SELECT * FROM tasks')
+    return data;
   }
 
   async findOne(id) {
@@ -69,4 +77,4 @@ class ProductsService {
 
 }
 
-module.exports = ProductsService;
+export default ProductsService;

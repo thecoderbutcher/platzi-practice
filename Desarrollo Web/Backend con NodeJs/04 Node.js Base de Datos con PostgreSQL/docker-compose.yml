@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres
+    container_name: ${PG_APP}-DB
+    environment:
+      - POSTGRES_DB=${PG_DB}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASS}
+    env_file: .env
+    ports:
+      - 5432:5432
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ${PG_APP}-DBSM
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGA_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGA_PASS}
+    ports:
+      - 5050:80
+
+volumes:
+  db-volume:
+    name: pg-data
