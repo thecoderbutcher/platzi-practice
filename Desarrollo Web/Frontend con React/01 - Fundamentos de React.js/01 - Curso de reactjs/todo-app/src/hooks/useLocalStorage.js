@@ -8,7 +8,7 @@ function useLocalStorage(itemName, initialValue){
         setTimeout(() => {
             try {
                 const itemLocal = localStorage.getItem(itemName);
-                let tasksParsed
+                let tasksParsed = []; 
                 
                 if(!itemLocal) tasksParsed = initialValue;
                 tasksParsed = JSON.parse(localStorage.getItem(itemName));
